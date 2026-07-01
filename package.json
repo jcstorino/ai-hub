@@ -7,8 +7,7 @@
     "build:context": "tsx src/build-context.ts",
     "analyze:agents": "tsx src/analyze-manual-agents.ts",
     "apply:agents-analysis": "tsx src/apply-manual-agents-analysis.ts",
-    "install:context": "./build-install.sh",
-    "sync:dbcli-skill": "./rebuild-dbcli-skill.sh"
+    "install:context": "./build-install.sh"
   },
   "keywords": [],
   "author": "",
