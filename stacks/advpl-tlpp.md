@@ -1,0 +1,35 @@
+# Stack AdvPL/TLPP
+
+- Use para projetos Protheus/TOTVS.
+- Linguagem padrão de interação e documentação: português do Brasil.
+- Mantenha regras globais reutilizáveis desta stack aqui.
+- Quando o usuário pedir para registrar uma nova restrição válida para qualquer projeto AdvPL/TLPP, atualize este arquivo.
+- Use como pasta de referência para consulta:
+  - `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/FONTES/FULL`
+- Essa pasta contém fontes padrão do ERP TOTVS e deve ser usada como fonte importante de consulta para:
+  - novas implementações
+  - entendimento de rotinas do sistema
+  - comparação com padrões nativos
+- Ao detectar esta stack, considere também:
+  - `skills/totvs/AGENTS.md`
+  - `skills/totvs/CLAUDE.md`
+- Roteamento por intenção:
+  - validar pre-compilação local com `advpls appre`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`
+  - mapear contexto e arquivos relacionados: `skills/totvs/advpl-tlpp/context-map/SKILL.md`
+  - revisar fonte AdvPL/TLPP: `skills/totvs/advpl-tlpp/code-review/SKILL.md`
+  - montar query Protheus: `skills/totvs/advpl-tlpp/query-builder/SKILL.md`
+  - revisar SQL: `skills/totvs/advpl-tlpp/sql-code-review/SKILL.md`
+  - otimizar SQL: `skills/totvs/advpl-tlpp/sql-optimization/SKILL.md`
+  - criar ponto de entrada: `skills/totvs/advpl-tlpp/entry-point-designer/SKILL.md`
+  - documentar Protheus.doc: `skills/totvs/advpl-tlpp/documentation-writer/SKILL.md`
+  - refatorar fonte: `skills/totvs/advpl-tlpp/refactor/SKILL.md`
+  - reduzir complexidade de método: `skills/totvs/advpl-tlpp/refactor-method-complexity-reduce/SKILL.md`
+  - migrar AdvPL para TLPP: `skills/totvs/advpl-tlpp/advpl-to-tlpp-migration/SKILL.md`
+  - gerar endpoint REST em TLPP: `skills/totvs/advpl-tlpp/tlpp-rest-endpoint-generator/SKILL.md`
+  - gerar cliente FWRest: `skills/totvs/advpl-tlpp/fwrest-client-generator/SKILL.md`
+  - gerar MVC Protheus: `skills/totvs/advpl-tlpp/mvc-generator/SKILL.md`
+  - consultar dicionário de dados: `skills/totvs/advpl-tlpp/data-dictionary-lookup/SKILL.md`
+  - gerar teste TIR: `skills/totvs/advpl-tlpp/tir-test-generator/SKILL.md`
+  - converter encoding para CP1252: `skills/totvs/advpl-tlpp/utf8-to-cp1252-conversion/SKILL.md`
+  - planejar implementação: `skills/totvs/advpl-tlpp/create-implementation-plan/SKILL.md`
+  - conduzir trabalho grande e orientado a especificação: `skills/totvs/advpl-tlpp/advpl-tlpp-sdd/SKILL.md`

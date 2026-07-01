@@ -1,0 +1,46 @@
+{
+  "advplTlpp": [
+    {
+      "id": "context-map",
+      "title": "Mapeamento de contexto",
+      "scope": ["advpl-tlpp"],
+      "when": "Antes de alterar fontes Protheus e quando for preciso localizar arquivos e padrões relacionados."
+    },
+    {
+      "id": "query-builder",
+      "title": "Construção de SQL Protheus",
+      "scope": ["advpl-tlpp", "sql"],
+      "when": "Para criar consultas em tabelas Protheus com filtros obrigatórios, filial e prevenção de problemas comuns."
+    },
+    {
+      "id": "entry-point-designer",
+      "title": "Pontos de entrada",
+      "scope": ["advpl-tlpp"],
+      "when": "Para criar ou revisar entry points e uso de PARAMIXB."
+    },
+    {
+      "id": "code-review",
+      "title": "Revisão AdvPL/TLPP",
+      "scope": ["advpl-tlpp"],
+      "when": "Para auditoria de qualidade, segurança, performance e aderência ao framework TOTVS."
+    },
+    {
+      "id": "documentation-writer",
+      "title": "Documentação Protheus.doc",
+      "scope": ["advpl-tlpp"],
+      "when": "Para gerar ou padronizar documentação de funções, classes e métodos."
+    },
+    {
+      "id": "refactor",
+      "title": "Refatoração segura",
+      "scope": ["advpl-tlpp"],
+      "when": "Para reduzir duplicação, melhorar legibilidade e manter comportamento existente."
+    },
+    {
+      "id": "utf8-to-cp1252-conversion",
+      "title": "Conversão de encoding",
+      "scope": ["advpl-tlpp"],
+      "when": "Após gerar ou editar fontes AdvPL/TLPP que precisem continuar compatíveis com o compilador Protheus."
+    }
+  ]
+}
