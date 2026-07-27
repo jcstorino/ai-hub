@@ -13,6 +13,18 @@
 - Ao detectar esta stack, considere também:
   - `skills/totvs/AGENTS.md`
   - `skills/totvs/CLAUDE.md`
+- Após qualquer alteração em fonte `.prw`, `.prx` ou `.tlpp`, execute obrigatoriamente a pré-compilação local pelo skill `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`.
+- Sempre que criar uma nova `Function`, `User Function` ou `Static Function`, preceda a declaração com o cabeçalho no formato do snippet `pdoc` definido em `~/Library/Application Support/Code - Insiders/User/snippets/advpl.json`.
+- Para esse cabeçalho, use obrigatoriamente:
+  - `@author       Julio Storino`
+  - `@version      P12 Onça`
+- Nomes reservados e proibidos nesta stack:
+  - `nOpc` não deve ser usado como nome de variável.
+  - `Function` é reservado ao produto padrão e não deve ser usado em customizações; use `User Function` para rotinas públicas e `Static Function` para auxiliares.
+- Ao montar manualmente uma chave para `DbSeek()` ou `MsSeek()`, respeite o tamanho integral de cada campo do índice.
+  - Campos de filial devem ser preenchidos à direita com espaços até o tamanho definido no SX3 antes de concatenar os próximos componentes da chave.
+  - Exemplo para `A3_FILIAL` com tamanho 6: `PadR("03", TamSX3("A3_FILIAL")[1]) + cCodVendedor`.
+  - Prefira `xFilial()` ou `FWxFilial()` quando aplicável, pois retornam a filial adequada ao compartilhamento da tabela.
 - Roteamento por intenção:
   - validar pre-compilação local com `advpls appre`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`
   - mapear contexto e arquivos relacionados: `skills/totvs/advpl-tlpp/context-map/SKILL.md`

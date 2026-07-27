@@ -9,12 +9,27 @@ Arquivo gerado para claude.
 - Este repositório é a pasta base do workspace único do VS Code.
 - O diretório de trabalho real sempre será informado pelo usuário no início do chat.
 - Use o diretório informado como escopo principal de edição, validação e análise.
+- Sempre que o usuário informar um novo path de trabalho, apenas confirme que a decisão foi acatada.
+- Ao receber um novo path de trabalho, não execute análise, inspeção ou qualquer outra ação automaticamente.
+- Só execute análises quando o usuário pedir explicitamente.
 - Não espalhe arquivos de instrução nas pastas dos projetos clientes.
 - Regras permanentes válidas para todos os projetos devem ser registradas aqui.
 - Regras permanentes válidas para uma stack devem ir em `stacks/*.md`.
 - Regras permanentes válidas para um único projeto devem ir em `projects/*.md`.
 - Para acesso operacional a banco de dados via CLI local, use `skills/local/shared/dbcli-data-access/SKILL.md`.
 - Sempre que uma regra permanente for alterada, regenere o contexto com `./build-install.sh`.
+- Crie novos projetos em `~/Work/`.
+- Use nomes de pastas em letras maiúsculas para todos os projetos criados em `~/Work/`.
+- Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome em caixa alta da pasta local.
+
+# Diretrizes de Comportamento
+
+## Modo Caveman (Economia de Tokens)
+
+- Respostas estritamente diretas, sem saudações, introduções ou conclusões.
+- Proibido narrar etapas intermediárias (ex: 'vou verificar', 'estou editando').
+- Informe apenas o resultado final quando a tarefa for concluída.
+- Mantenha o código limpo e sem comentários explicativos
 
 ## Seleção de Contexto
 
@@ -145,6 +160,20 @@ Arquivo gerado para claude.
 - Arquivo local: `projects/totvs-fontes.md`
 - Stacks: `git`
 
+### TRELLO
+
+- Id: `trello`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/TRELLO`
+- Arquivo local: `projects/trello.md`
+- Stacks: `git`
+
+### MEETDECK-LITE
+
+- Id: `meetdeck-lite`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/MEETDECK-LITE`
+- Arquivo local: `projects/meetdeck-lite.md`
+- Stacks: `git`, `typescript`
+
 
 ## Stacks
 
@@ -165,6 +194,18 @@ Arquivo gerado para claude.
 - Ao detectar esta stack, considere também:
   - `skills/totvs/AGENTS.md`
   - `skills/totvs/CLAUDE.md`
+- Após qualquer alteração em fonte `.prw`, `.prx` ou `.tlpp`, execute obrigatoriamente a pré-compilação local pelo skill `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`.
+- Sempre que criar uma nova `Function`, `User Function` ou `Static Function`, preceda a declaração com o cabeçalho no formato do snippet `pdoc` definido em `~/Library/Application Support/Code - Insiders/User/snippets/advpl.json`.
+- Para esse cabeçalho, use obrigatoriamente:
+  - `@author       Julio Storino`
+  - `@version      P12 Onça`
+- Nomes reservados e proibidos nesta stack:
+  - `nOpc` não deve ser usado como nome de variável.
+  - `Function` é reservado ao produto padrão e não deve ser usado em customizações; use `User Function` para rotinas públicas e `Static Function` para auxiliares.
+- Ao montar manualmente uma chave para `DbSeek()` ou `MsSeek()`, respeite o tamanho integral de cada campo do índice.
+  - Campos de filial devem ser preenchidos à direita com espaços até o tamanho definido no SX3 antes de concatenar os próximos componentes da chave.
+  - Exemplo para `A3_FILIAL` com tamanho 6: `PadR("03", TamSX3("A3_FILIAL")[1]) + cCodVendedor`.
+  - Prefira `xFilial()` ou `FWxFilial()` quando aplicável, pois retornam a filial adequada ao compartilhamento da tabela.
 - Roteamento por intenção:
   - validar pre-compilação local com `advpls appre`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`
   - mapear contexto e arquivos relacionados: `skills/totvs/advpl-tlpp/context-map/SKILL.md`

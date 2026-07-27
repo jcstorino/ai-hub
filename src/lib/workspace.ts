@@ -91,7 +91,8 @@ function inferStacks(name: string, root: string) {
         source.includes('VSC-EXTENSIONS') ||
         source.includes('GOOGLE-SCRIPTS') ||
         source.includes('AI-HUB') ||
-        source.includes('/GIT')
+        source.includes('/GIT') ||
+        fs.existsSync(path.join(root, 'package.json'))
     ) {
         stacks.add('typescript');
     }
