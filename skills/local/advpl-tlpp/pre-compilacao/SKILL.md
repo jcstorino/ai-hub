@@ -40,12 +40,14 @@ Use este skill quando houver alteracoes em `.prw`, `.prx` ou `.tlpp` e for neces
 5. Valide o resultado usando `stdout`, `stderr`, `appre.log` e a saida preprocessada.
 6. Se houver falha, pare e mostre os artefatos obrigatorios.
 7. Se houver sucesso, entregue a tabela final e a mensagem de status.
+8. Depois da validacao, diagnostico e leitura de logs, apague `.totvs`.
 
 ## Regras obrigatorias
 
 - Sempre usar `advpls`, nunca inventar outro fluxo.
 - Sempre executar `advpls` pelo caminho absoluto padrao do TDS.
 - Sempre gerar artefatos dentro de `.totvs`.
+- Depois de concluir a validacao e o diagnostico, sempre remover `.totvs`.
 - Nunca confiar apenas no `exit code`.
 - Nunca prosseguir sem include valido.
 - Nunca continuar para compilacao remota se o `appre` falhar.
