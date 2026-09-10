@@ -19,8 +19,9 @@ Arquivo gerado para copilot.
 - Para acesso operacional a banco de dados via CLI local, use `skills/local/shared/dbcli-data-access/SKILL.md`.
 - Sempre que uma regra permanente for alterada, regenere o contexto com `./build-install.sh`.
 - Crie novos projetos em `~/Work/`.
-- Use nomes de pastas em letras maiúsculas para todos os projetos criados em `~/Work/`.
-- Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome em caixa alta da pasta local.
+- Nomes de pastas criadas diretamente na raiz de `~/Work/` devem ser em letras maiúsculas.
+- A partir do segundo nível (subpastas dentro de `~/Work/<RAIZ>/`), use letras minúsculas.
+- Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome da pasta local.
 
 # Diretrizes de Comportamento
 
@@ -181,6 +182,13 @@ Arquivo gerado para copilot.
 - Arquivo local: `projects/mail-signatures.md`
 - Stacks: `git`
 
+### SWIFT
+
+- Id: `swift`
+- Raiz real: `/Users/jcstorino/Swift`
+- Arquivo local: `projects/swift.md`
+- Stacks: `git`
+
 
 ## Stacks
 
@@ -210,6 +218,9 @@ Arquivo gerado para copilot.
 - Nomes reservados e proibidos nesta stack:
   - `nOpc` não deve ser usado como nome de variável.
   - `Function` é reservado ao produto padrão e não deve ser usado em customizações; use `User Function` para rotinas públicas e `Static Function` para auxiliares.
+- Variáveis usadas como índice ou contador em `For`, `While`, `Do While` ou qualquer outro loop devem estar declaradas como `Local` na função ou método que contém o loop.
+  - Exemplo: declare `Local nX := 0` antes de usar `For nX := 1 To Len(aItens)`.
+  - Ao receber a solicitação "valide se as variaveis de loop estao declaradas como local", revise todos os loops do escopo solicitado e informe ou corrija qualquer variável de controle sem declaração `Local`.
 - Limites de nomenclatura para fontes `.prw`:
   - variáveis devem ter no máximo 10 caracteres.
   - nomes de `User Function` devem ter no máximo 8 caracteres, pois recebem o prefixo `U_` em tempo de chamada.

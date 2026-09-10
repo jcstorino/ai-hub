@@ -22,6 +22,9 @@
 - Nomes reservados e proibidos nesta stack:
   - `nOpc` não deve ser usado como nome de variável.
   - `Function` é reservado ao produto padrão e não deve ser usado em customizações; use `User Function` para rotinas públicas e `Static Function` para auxiliares.
+- Variáveis usadas como índice ou contador em `For`, `While`, `Do While` ou qualquer outro loop devem estar declaradas como `Local` na função ou método que contém o loop.
+  - Exemplo: declare `Local nX := 0` antes de usar `For nX := 1 To Len(aItens)`.
+  - Ao receber a solicitação "valide se as variaveis de loop estao declaradas como local", revise todos os loops do escopo solicitado e informe ou corrija qualquer variável de controle sem declaração `Local`.
 - Limites de nomenclatura para fontes `.prw`:
   - variáveis devem ter no máximo 10 caracteres.
   - nomes de `User Function` devem ter no máximo 8 caracteres, pois recebem o prefixo `U_` em tempo de chamada.

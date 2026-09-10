@@ -13,8 +13,9 @@
 - Para acesso operacional a banco de dados via CLI local, use `skills/local/shared/dbcli-data-access/SKILL.md`.
 - Sempre que uma regra permanente for alterada, regenere o contexto com `./build-install.sh`.
 - Crie novos projetos em `~/Work/`.
-- Use nomes de pastas em letras maiúsculas para todos os projetos criados em `~/Work/`.
-- Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome em caixa alta da pasta local.
+- Nomes de pastas criadas diretamente na raiz de `~/Work/` devem ser em letras maiúsculas.
+- A partir do segundo nível (subpastas dentro de `~/Work/<RAIZ>/`), use letras minúsculas.
+- Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome da pasta local.
 
 # Diretrizes de Comportamento
 
