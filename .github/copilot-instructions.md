@@ -45,7 +45,7 @@ Arquivo gerado para copilot.
 ### AI-HUB
 
 - Id: `ai-hub`
-- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/AI-HUB/GIT`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/AI-HUB`
 - Arquivo local: `projects/ai-hub.md`
 - Stacks: `git`, `typescript`
 
@@ -115,7 +115,7 @@ Arquivo gerado para copilot.
 ### DBCLI
 
 - Id: `dbcli`
-- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/DBCLI/GIT`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/DBCLI`
 - Arquivo local: `projects/dbcli.md`
 - Stacks: `git`, `typescript`
 
@@ -168,18 +168,18 @@ Arquivo gerado para copilot.
 - Arquivo local: `projects/trello.md`
 - Stacks: `git`
 
-### MEETDECK-LITE
+### STREAMDECK
 
-- Id: `meetdeck-lite`
-- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/MEETDECK-LITE`
-- Arquivo local: `projects/meetdeck-lite.md`
-- Stacks: `git`, `typescript`
+- Id: `streamdeck`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/STREAMDECK`
+- Arquivo local: `projects/streamdeck.md`
+- Stacks: `git`
 
-### MAIL-SIGNATURES
+### MAIL
 
-- Id: `mail-signatures`
-- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/MAIL-SIGNATURES`
-- Arquivo local: `projects/mail-signatures.md`
+- Id: `mail`
+- Raiz real: `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/MAIL`
+- Arquivo local: `projects/mail.md`
 - Stacks: `git`
 
 ### SWIFT

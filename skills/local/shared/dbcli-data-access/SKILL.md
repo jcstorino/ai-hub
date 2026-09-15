@@ -5,7 +5,8 @@ description: "Acessar dados via DBCLI para testar conexao, listar tabelas, descr
 
 # DBCLI Data Access
 
-Use este skill para acesso operacional a banco via DBCLI no projeto `DBCLI` do workspace.
+Use este skill para acesso operacional a banco via DBCLI no projeto:
+`/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/DBCLI/dbcli`.
 O executável obrigatório é `dbcli`; não use o comando genérico `db`.
 
 ## Escopo
