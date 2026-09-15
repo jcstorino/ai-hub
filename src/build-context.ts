@@ -17,25 +17,20 @@ interface CuratedSkillsFile {
 
 const workspaceProjects = readWorkspaceProjects();
 const curated = readJson<CuratedSkillsFile>('skills/curated/active-skills.json');
-const globalBaseContent = readText('global/base.md');
 const projectFiles = workspaceProjects.map((project) => ({
     project,
     content: ensureProjectFile(project),
 }));
-const stackFiles = readStackFiles();
 
 fs.mkdirSync(resolveFromRoot('build', 'generated', 'project-context'), {
     recursive: true,
 });
-fs.mkdirSync(resolveFromRoot('.github'), { recursive: true });
-
 writeText(
     'skills/generated/active-skills.md',
     renderActiveSkills(curated.advplTlpp)
 );
 writeText('AGENTS.md', renderAgents('codex'));
 writeText('CLAUDE.md', renderAgents('claude'));
-writeText('.github/copilot-instructions.md', renderAgents('copilot'));
 
 for (const { project, content } of projectFiles) {
     writeText(
@@ -56,24 +51,6 @@ function readJson<T>(relativePath: string) {
     return JSON.parse(fs.readFileSync(file, 'utf8')) as T;
 }
 
-function readText(relativePath: string) {
-    return fs.readFileSync(resolveFromRoot(relativePath), 'utf8').trim();
-}
-
-function readStackFiles() {
-    const dir = resolveFromRoot('stacks');
-    const files = fs
-        .readdirSync(dir)
-        .filter((file: string) => file.endsWith('.md'))
-        .sort();
-
-    return files.map((file: string) => ({
-        id: path.basename(file, '.md'),
-        file,
-        content: fs.readFileSync(path.join(dir, file), 'utf8').trim(),
-    }));
-}
-
 function writeText(relativePath: string, content: string) {
     const file = resolveFromRoot(relativePath);
     fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -86,46 +63,15 @@ function renderAgents(target: 'codex' | 'claude' | 'copilot') {
         '',
         `Arquivo gerado para ${target}.`,
         '',
-        '## Contexto Global',
+        'Este arquivo e somente um bootstrap.',
         '',
-        globalBaseContent,
-        '',
-        '## Seleção de Contexto',
-        '',
-        '- Antes de implementar, identifique o projeto pelo caminho informado pelo usuário.',
-        '- Depois de identificar o projeto, leia o arquivo de projeto correspondente em `projects/`.',
-        '- Leia também os arquivos de stack listados para aquele projeto em `stacks/`.',
-        '- Para skills locais e reaproveitáveis, consulte `skills/generated/active-skills.md` e as coleções em `skills/`.',
-        '- Quando o usuário pedir para registrar uma nova regra permanente, atualize o arquivo de stack ou projeto correto e depois regenere este contexto.',
-        '',
-        '## Projetos',
-        '',
-        ...workspaceProjects.flatMap(renderProjectBullet),
-        '',
-        '## Stacks',
-        '',
-        ...stackFiles.flatMap((stack: { id: string; content: string }) =>
-            renderStackSection(stack, target)
-        ),
-        '## Skills Curados',
-        '',
-        fs.readFileSync(
-            resolveFromRoot('skills', 'generated', 'active-skills.md'),
-            'utf8'
-        ).trim(),
+        '- Leia `global/base.md` para as regras globais.',
+        '- Leia `build/generated/project-index.md` para localizar o projeto pelo caminho de trabalho.',
+        '- Leia o arquivo correspondente em `projects/` e o contexto correspondente em `build/generated/project-context/`.',
+        '- Leia somente as stacks listadas no projeto em `stacks/`.',
+        '- Leia somente as skills necessarias, seguindo o roteamento da stack e `skills/generated/active-skills.md`.',
+        '- Para registrar regras permanentes, altere `global/`, `projects/` ou `stacks/` e execute `./build-install.sh`.',
     ].join('\n');
-}
-
-function renderProjectBullet(project: WorkspaceProject) {
-    return [
-        `### ${project.name}`,
-        '',
-        `- Id: \`${project.id}\``,
-        `- Raiz real: \`${project.root}\``,
-        `- Arquivo local: \`${project.projectFile}\``,
-        `- Stacks: ${project.stacks.map((stack: string) => `\`${stack}\``).join(', ')}`,
-        '',
-    ];
 }
 
 function renderActiveSkills(skills: CuratedSkill[]) {
@@ -189,27 +135,4 @@ function ensureProjectFile(project: WorkspaceProject) {
     }
 
     return fs.readFileSync(file, 'utf8').trim();
-}
-
-function renderStackSection(
-    stack: { id: string; content: string },
-    target: 'codex' | 'claude' | 'copilot'
-) {
-    const lines = [`### ${stack.id}`, '', stack.content, ''];
-
-    if (stack.id === 'advpl-tlpp') {
-        lines.push('#### Referências TOTVS para esta stack', '');
-
-        if (target === 'claude') {
-            lines.push('- Prioridade alta: `skills/totvs/CLAUDE.md`');
-            lines.push('- Referência complementar: `skills/totvs/AGENTS.md`');
-        } else {
-            lines.push('- Prioridade alta: `skills/totvs/AGENTS.md`');
-            lines.push('- Referência complementar: `skills/totvs/CLAUDE.md`');
-        }
-
-        lines.push('');
-    }
-
-    return lines;
 }

@@ -1,39 +1,14 @@
 # Stack AdvPL/TLPP
 
 - Use para projetos Protheus/TOTVS.
-- Linguagem padrão de interação e documentação: português do Brasil.
-- Mantenha regras globais reutilizáveis desta stack aqui.
-- Quando o usuário pedir para registrar uma nova restrição válida para qualquer projeto AdvPL/TLPP, atualize este arquivo.
-- Use como pasta de referência para consulta:
-  - `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/FONTES/FULL`
-- Essa pasta contém fontes padrão do ERP TOTVS e deve ser usada como fonte importante de consulta para:
-  - novas implementações
-  - entendimento de rotinas do sistema
-  - comparação com padrões nativos
-- Ao detectar esta stack, considere também:
-  - `skills/totvs/AGENTS.md`
-  - `skills/totvs/CLAUDE.md`
-- Após qualquer alteração em fonte `.prw`, `.prx` ou `.tlpp`, execute obrigatoriamente a pré-compilação local pelo skill `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`.
-- Após concluir a validação da pré-compilação local, remova a pasta `.totvs` para evitar que seus artefatos entrem em compilações amplas do projeto.
-- Sempre que criar uma nova `Function`, `User Function` ou `Static Function`, preceda a declaração com o cabeçalho no formato do snippet `pdoc` definido em `~/Library/Application Support/Code - Insiders/User/snippets/advpl.json`.
-- Para esse cabeçalho, use obrigatoriamente:
-  - `@author       Julio Storino`
-  - `@version      P12 Onça`
-- Nomes reservados e proibidos nesta stack:
-  - `nOpc` não deve ser usado como nome de variável.
-  - `Function` é reservado ao produto padrão e não deve ser usado em customizações; use `User Function` para rotinas públicas e `Static Function` para auxiliares.
-- Variáveis usadas como índice ou contador em `For`, `While`, `Do While` ou qualquer outro loop devem estar declaradas como `Local` na função ou método que contém o loop.
-  - Exemplo: declare `Local nX := 0` antes de usar `For nX := 1 To Len(aItens)`.
-  - Ao receber a solicitação "valide se as variaveis de loop estao declaradas como local", revise todos os loops do escopo solicitado e informe ou corrija qualquer variável de controle sem declaração `Local`.
-- Limites de nomenclatura para fontes `.prw`:
-  - variáveis devem ter no máximo 10 caracteres.
-  - nomes de `User Function` devem ter no máximo 8 caracteres, pois recebem o prefixo `U_` em tempo de chamada.
-  - nomes de `Static Function` devem ter no máximo 10 caracteres.
-- Ao montar manualmente uma chave para `DbSeek()` ou `MsSeek()`, respeite o tamanho integral de cada campo do índice.
-  - Campos de filial devem ser preenchidos à direita com espaços até o tamanho definido no SX3 antes de concatenar os próximos componentes da chave.
-  - Exemplo para `A3_FILIAL` com tamanho 6: `PadR("03", TamSX3("A3_FILIAL")[1]) + cCodVendedor`.
-  - Prefira `xFilial()` ou `FWxFilial()` quando aplicável, pois retornam a filial adequada ao compartilhamento da tabela.
-- Roteamento por intenção:
+- Linguagem de interacao e documentacao: portugues do Brasil.
+- Convencoes locais: `skills/local/advpl-tlpp/conventions/SKILL.md`.
+- Pre-compilacao obrigatoria apos alteracao em `.prw`, `.prx` ou `.tlpp`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`.
+- Apos concluir a validacao da pre-compilacao local, remova a pasta `.totvs`.
+- Para fontes padrao TOTVS, consulte `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/FONTES/FULL`.
+- Para instrucoes TOTVS desta stack, consulte `skills/totvs/AGENTS.md` e `skills/totvs/CLAUDE.md`.
+
+## Roteamento por intencao
   - validar pre-compilação local com `advpls appre`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`
   - mapear contexto e arquivos relacionados: `skills/totvs/advpl-tlpp/context-map/SKILL.md`
   - revisar fonte AdvPL/TLPP: `skills/totvs/advpl-tlpp/code-review/SKILL.md`
