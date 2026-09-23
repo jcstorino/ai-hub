@@ -1,9 +1,12 @@
 # Contexto Global
 
 - Este repositório é a pasta base do workspace único do VS Code.
-- O diretório de trabalho real sempre será informado pelo usuário no início do chat.
-- Use o diretório informado como escopo principal de edição, validação e análise.
-- Sempre que o usuário informar um novo path de trabalho, apenas confirme que a decisão foi acatada.
+- O AI-HUB permanece sempre como raiz das instruções, independentemente do diretório de trabalho informado.
+- O diretório de trabalho informado pelo usuário define apenas o escopo operacional de manipulação de arquivos.
+- Nunca substitua o AI-HUB como raiz de instruções ao receber um novo diretório de trabalho.
+- Mantenha carregadas as instruções do AI-HUB durante toda a tarefa.
+- Sempre gere mensagens de commit e respostas em português do Brasil (pt-BR).
+- Sempre que o usuário informar um novo path de trabalho, apenas confirme que a decisão foi acatada, preservando o AI-HUB como raiz de instruções.
 - Ao receber um novo path de trabalho, não execute análise, inspeção ou qualquer outra ação automaticamente.
 - Só execute análises quando o usuário pedir explicitamente.
 - Não espalhe arquivos de instrução nas pastas dos projetos clientes.

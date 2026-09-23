@@ -9,6 +9,8 @@
 - Quando o usuário se referir a `specs`, consulte a pasta:
   - `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/P12_DBMEDICINA/specs`
 - Credenciais e endereços de ambiente ficam em `Rede.yaml`, na raiz do projeto; nunca exponha esse conteúdo fora do necessário.
+- Antes de criar, editar, renomear, mover ou commitar qualquer fonte em `dbmedicina-producao`, rodar `git branch --show-current` e conferir se é a branch correta para a demanda em andamento (ex.: `79247-desenv` para o PBI 79247). Múltiplas sessões/chats trabalham em branches diferentes do mesmo repositório em paralelo — se a branch atual não bater com a demanda pedida pelo usuário, avisar e sugerir `git checkout <branch-correta>` antes de prosseguir, em vez de aplicar a alteração na branch errada.
+- O projeto não tem codificação própria de dígito de módulo. Para a convenção de nomenclatura de fontes (`DB<mm>Cnnn.PRW`, `DB<mm>Pnnn.PRW`), use exatamente os códigos da tabela "Códigos de módulo Protheus" em `stacks/advpl-tlpp.md` (ex.: PCP = `10`).
 
 ## Boas práticas DBMEDICINA
 
@@ -46,6 +48,17 @@
 - Preferir Smart View para relatórios; justificar previamente qualquer alternativa.
 - Usar nomes completos de funções e comandos AdvPL/TLPP, sem abreviações.
 - Usar `FieldPos()` com o cursor completo ao validar campos customizados.
+
+## Especificações LAB065 e padrões complementares
+
+- Quando a especificação (pasta `specs`) indicar construção em MVC, seguir a especificação; telas de consulta ou log de tabela customizada também são construídas em MVC (`FWMBrowse` com `ModelDef`/`ViewDef` somente leitura). Qualquer desvio da especificação exige aprovação prévia do usuário.
+- Em menu MVC, ações extras chamam a própria `User Function` principal com parâmetro de ação (ex.: `ACTION "U_DB06C005(2)"`), sem criar outra `User Function` pública.
+- Nos fontes das especificações LAB065, usar `@author Julio Storino - Lab065` no cabeçalho `Protheus.doc`.
+- Fontes com acentuação em português; ao editar `.prw`/`.tlpp`, converter o arquivo para CP-1252 ao final (`iconv -f UTF-8 -t CP1252`) e revalidar com `advpls appre` conforme a skill de pré-compilação; para editar de novo, converter para UTF-8, editar e reconverter.
+- Exportação para planilha: usar `FWMsExcelEx` (`AddworkSheet`, `AddTable`, `AddColumn`, `AddRow`, `Activate`, `GetXMLFile`, `DeActivate`), `CpyS2T` e `ShellExecute`; não usar `MsExcel`.
+- Consultas SQL em fontes: `FWExecStatement` com parâmetros `?`, `GetNextAlias()` e `WITH (%nolock%)`; sem concatenar valores do usuário no SQL nem usar `TCSqlToArr`.
+- Buscas nos fontes de referência (`Work/FONTES/FULL`) devem ser feitas em nível de bytes (ex.: Python), pois muitos arquivos têm terminadores de linha NEL/CRLF que fazem o `grep` falhar.
+- Antes de usar uma API TOTVS, validar a assinatura em `Work/FONTES/FULL` ou nas referências das skills; não inferir de memória.
 
 ## Conciliação com TOTVS
 

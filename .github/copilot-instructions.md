@@ -4,6 +4,8 @@ Arquivo gerado para copilot.
 
 Este arquivo e somente um bootstrap.
 
+O AI-HUB permanece como raiz das instrucoes; o diretorio de trabalho informado define apenas o escopo operacional.
+
 - Leia `global/base.md` para as regras globais.
 - Leia `build/generated/project-index.md` para localizar o projeto pelo caminho de trabalho.
 - Leia o arquivo correspondente em `projects/` e o contexto correspondente em `build/generated/project-context/`.
