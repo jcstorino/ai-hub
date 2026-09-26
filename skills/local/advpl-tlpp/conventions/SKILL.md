@@ -15,8 +15,8 @@ Use estas regras junto das skills TOTVS quando trabalhar em fontes AdvPL/TLPP.
 - `Function` e reservado ao produto padrao; em customizacoes use `User Function` para rotinas publicas e `Static Function` para auxiliares.
 - Variaveis usadas como indice ou contador em loops devem estar declaradas como `Local` na funcao ou metodo que contem o loop.
 - Variaveis devem ter no maximo 10 caracteres.
-- Nomes de `User Function` devem ter no maximo 8 caracteres.
-- Nomes de `Static Function` devem ter no maximo 10 caracteres.
+- Em fontes `.prw`/`.prx`: nomes de `User Function` devem ter no maximo 8 caracteres, e nomes de `Static Function` no maximo 10 caracteres.
+- Em fontes `.tlpp`: sem limite de tamanho para `User Function`/`Static Function`, exceto se a skill do projeto especificar outra regra.
 - Ao montar manualmente chaves para `DbSeek()` ou `MsSeek()`, respeite o tamanho integral de cada campo do indice.
 - Preencha campos de filial a direita com espacos antes de concatenar os proximos componentes.
 - Prefira `xFilial()` ou `FWxFilial()` quando aplicavel.

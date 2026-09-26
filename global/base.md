@@ -20,6 +20,13 @@
 - A partir do segundo nível (subpastas dentro de `~/Work/<RAIZ>/`), use letras minúsculas.
 - Ao publicar projetos no GitHub, use nomes de repositórios em letras minúsculas, independentemente do nome da pasta local.
 
+# Git
+
+- Nunca adicione `Co-Authored-By` às mensagens de commit.
+- Nunca adicione Claude, Anthropic ou qualquer agente de IA como coautor.
+- Não adicione trailers automáticos às mensagens de commit.
+- A autoria do commit deve permanecer exclusivamente com o usuário configurado no Git.
+
 # Diretrizes de Comportamento
 
 ## Modo Caveman (Economia de Tokens)

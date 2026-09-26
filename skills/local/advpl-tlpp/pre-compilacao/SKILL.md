@@ -9,10 +9,13 @@ Use este skill quando houver alteracoes em `.prw`, `.prx` ou `.tlpp` e for neces
 
 ## Binario obrigatorio
 
-- Caminho absoluto padrao do `advpls` no macOS:
-  - `~/.vscode-insiders/extensions/totvs.tds-vscode-2.0.16/node_modules/@totvs/tds-ls/bin/mac/advpls`
-- Use sempre este caminho absoluto.
-- Nao depender de `PATH`.
+- O `advpls` fica em `~/.vscode-insiders/extensions/totvs.tds-vscode-<versao>/node_modules/@totvs/tds-ls/bin/mac/advpls`.
+- O segmento `<versao>` muda a cada atualizacao da extensao pelo VSCode — nunca fixar um numero de versao literal (ex.: `2.0.16`) num script ou instrucao, pois o caminho para de existir no proximo update.
+- Antes de executar, resolver o caminho atual dinamicamente, por exemplo:
+  ```bash
+  BIN=$(ls -d ~/.vscode-insiders/extensions/totvs.tds-vscode-*/node_modules/@totvs/tds-ls/bin/mac/advpls | sort -V | tail -1)
+  ```
+- Usar sempre o caminho absoluto resolvido. Nao depender de `PATH`.
 
 ## Escopo
 
@@ -31,7 +34,7 @@ Use este skill quando houver alteracoes em `.prw`, `.prx` ou `.tlpp` e for neces
 ## Fluxo
 
 1. Identifique os fontes alterados `.prw`, `.prx` e `.tlpp`.
-2. Resolva os includes conforme `servers.json`.
+2. Resolva os includes conforme `servers.json`, incluindo sempre o diretório padrão `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/INCLUDE` antes dos includes específicos do projeto.
 3. Limpe e recrie `.totvs`.
 4. Execute `appre` no menor escopo util usando o caminho absoluto do binario:
    - arquivo unico: chamada direta no fonte
@@ -50,5 +53,7 @@ Use este skill quando houver alteracoes em `.prw`, `.prx` ou `.tlpp` e for neces
 - Depois de concluir a validacao e o diagnostico, sempre remover `.totvs`.
 - Nunca confiar apenas no `exit code`.
 - Nunca prosseguir sem include valido.
+- Sempre passar `-I /Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/INCLUDE` ao `appre`; adicione depois os caminhos específicos resolvidos em `servers.json`.
+- Não execute `appre` somente com os includes específicos do projeto: fontes que incluem `PROTHEUS.CH` podem terminar com `has no valid content after precompiled`.
 - Nunca continuar para compilacao remota se o `appre` falhar.
 - Reutilize includes ja resolvidos na mesma tarefa.

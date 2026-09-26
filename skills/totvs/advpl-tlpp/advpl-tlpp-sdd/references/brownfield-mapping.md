@@ -161,7 +161,7 @@ Pattern: `[ALIAS]_[FIELD]` — e.g., `A1_COD`, `E1_FILIAL`
 **Variables (Hungarian Notation) — mandatory:**
 | Prefix | Type | Example |
 |---|---|---|
-| `c` | Character | `cNome`, `cFilial` |
+| `c` | Character | `cNome`, `cFilAux` |
 | `n` | Numeric | `nTotal`, `nQtd` |
 | `l` | Logical | `lOk`, `lEncontrado` |
 | `a` | Array | `aItems`, `aParams` |

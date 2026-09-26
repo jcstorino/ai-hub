@@ -49,6 +49,18 @@
 - Usar nomes completos de funções e comandos AdvPL/TLPP, sem abreviações.
 - Usar `FieldPos()` com o cursor completo ao validar campos customizados.
 
+## Git
+
+- Toda mensagem de commit deve começar com o número da demanda no formato `#99999 `.
+- Exemplo: `#81826 Corrige validação da transferência`
+
+## Pontos de Entrada
+
+- PE de rotina não-MVC: nome do fonte é exatamente o nome do próprio ponto de entrada, sem prefixo `PE_`.
+- PE de rotina MVC: nome do fonte é o nome do ponto de entrada com sufixo `_PE`.
+- Nome real do PE nunca deve ser presumido por padrão/analogia com outras rotinas — confirmar em fonte padrão real, TDN ou com o usuário antes de implementar.
+- Se o tratamento dentro do PE for complexo, não implementar a lógica na própria função do ponto de entrada: criar outro fonte com a tratativa e chamá-lo a partir do PE usando `FindFunction("U_nomefun")` para validar a existência antes de chamar (não existe `ExistFun` nativo — confirmado em `Work/FONTES/FULL`, ex.: `loja830.prw`), garantindo que o PE nunca quebre por ausência da função.
+
 ## Especificações LAB065 e padrões complementares
 
 - Quando a especificação (pasta `specs`) indicar construção em MVC, seguir a especificação; telas de consulta ou log de tabela customizada também são construídas em MVC (`FWMBrowse` com `ModelDef`/`ViewDef` somente leitura). Qualquer desvio da especificação exige aprovação prévia do usuário.
