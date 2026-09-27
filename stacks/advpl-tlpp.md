@@ -6,6 +6,7 @@
 - Pre-compilacao obrigatoria apos alteracao em `.prw`, `.prx` ou `.tlpp`: `skills/local/advpl-tlpp/pre-compilacao/SKILL.md`.
 - Apos concluir a validacao da pre-compilacao local, remova a pasta `.totvs`.
 - Para fontes padrao TOTVS, consulte `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/FONTES/FULL`.
+- Quando o usuario se referir a `projetos passados`, buscar em `~/Work` todas as pastas cujo nome comece com `P10`, `P11`, `P12` etc.; dentro de cada uma dessas pastas, procurar subpastas `SVN`, `GIT` ou `Protheus`, onde estarao os fontes (`.prw`, `.prx`, `.prg`, `.tlpp`) do respectivo projeto.
 - Para instrucoes TOTVS desta stack, consulte `skills/totvs/AGENTS.md` e `skills/totvs/CLAUDE.md`.
 
 ## Codigos de modulo Protheus

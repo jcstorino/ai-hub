@@ -20,6 +20,7 @@ Use estas regras junto das skills TOTVS quando trabalhar em fontes AdvPL/TLPP.
 - Ao montar manualmente chaves para `DbSeek()` ou `MsSeek()`, respeite o tamanho integral de cada campo do indice.
 - Preencha campos de filial a direita com espacos antes de concatenar os proximos componentes.
 - Prefira `xFilial()` ou `FWxFilial()` quando aplicavel.
+- Toda `Function`, `User Function` ou `Static Function` termina com uma linha `Return` (ou `Return <expressao>`) na coluna 0, sem identacao. Apenas o corpo entre a declaracao e esse `Return` final deve ser identado (4 espacos por nivel). Retornos antecipados dentro de blocos condicionais (`If`/`EndIf` etc.) permanecem identados no nivel do bloco; a regra vale apenas para o `Return` final e desidentado da funcao.
 
 ## Referencias
 
