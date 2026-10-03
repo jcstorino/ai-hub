@@ -9,8 +9,17 @@
 - Quando o usuário se referir a `specs`, consulte a pasta:
   - `/Users/jcstorino/Library/Mobile Documents/com~apple~CloudDocs/Work/P12_DBMEDICINA/specs`
 - Credenciais e endereços de ambiente ficam em `Rede.yaml`, na raiz do projeto; nunca exponha esse conteúdo fora do necessário.
-- Antes de criar, editar, renomear, mover ou commitar qualquer fonte em `dbmedicina-producao`, rodar `git branch --show-current` e conferir se é a branch correta para a demanda em andamento (ex.: `79247-desenv` para o PBI 79247). Múltiplas sessões/chats trabalham em branches diferentes do mesmo repositório em paralelo — se a branch atual não bater com a demanda pedida pelo usuário, avisar e sugerir `git checkout <branch-correta>` antes de prosseguir, em vez de aplicar a alteração na branch errada.
+- Antes de criar, editar, renomear, mover ou commitar qualquer fonte em `dbmedicina-producao`, rodar `git branch --show-current` e conferir se é a branch correta para a demanda em andamento (ex.: `79247-desenv` para o PBI 79247). Múltiplas sessões/chats trabalham em branches diferentes do mesmo repositório em paralelo (um worktree por branch, ver seção "Worktrees") — se a branch atual não bater com a demanda pedida pelo usuário, avisar e sugerir `git checkout <branch-correta>` antes de prosseguir, em vez de aplicar a alteração na branch errada.
+- Mensagens de commit em `dbmedicina-producao` são obrigadas a referenciar o work item: iniciar com `#<numero-do-workitem>` (ex.: `#79267 <mensagem>`).
+- Não commitar nem dar push a cada ajuste: acumular as alterações no working tree e só commitar quando o usuário pedir.
 - O projeto não tem codificação própria de dígito de módulo. Para a convenção de nomenclatura de fontes (`DB<mm>Cnnn.PRW`, `DB<mm>Pnnn.PRW`), use exatamente os códigos da tabela "Códigos de módulo Protheus" em `stacks/advpl-tlpp.md` (ex.: PCP = `10`).
+
+## Worktrees
+
+- Cada demanda em `dbmedicina-producao` trabalha em um worktree próprio, não na pasta original compartilhada, para evitar que um chat troque a branch enquanto outro tem alteração não commitada.
+- Pasta original: `.../GIT/dbmedicina-producao`. Worktrees das demandas ficam em pastas irmãs: `.../GIT/dbmedicina-producao-<PBI>` (ex.: `dbmedicina-producao-79267`).
+- Antes de começar a trabalhar em uma demanda, criar (se não existir) com: `git -C dbmedicina-producao worktree add ../dbmedicina-producao-<PBI> <branch>`. Depois, usar só essa pasta nova.
+- Não usar `git checkout`/`git stash` na pasta original compartilhada — outro chat pode estar com ela aberta. Se for inevitável, seguir a rotina de segurança: `git status`, commit ou stash com mensagem identificável antes de trocar de branch.
 
 ## Boas práticas DBMEDICINA
 
@@ -31,7 +40,7 @@
 - Usar mensagens com parcimônia para não manter registros bloqueados; aplicar `OemToAnsi()` nos textos exibidos na interface quando necessário para compatibilidade de acentuação.
 - Para Embedded SQL, usar alias dinâmico com `GetNextAlias()` e formatar datas e números na consulta quando aplicável.
 - Para consultas parametrizadas, especialmente em laços, preferir `FWExecStatement` ou `FWPreparedStatement`, conforme as skills TOTVS.
-- Em leituras SQL no SQL Server, usar a convenção `%nolock%` das skills TOTVS; não aplicar `NOLOCK` em Oracle.
+- Em leituras SQL, aplicar `WITH (NOLOCK)` somente quando o banco for SQL Server, com `If "MSSQL" $ Upper(AllTrim(TCGetDB()))` (padrão dos fontes de referência, ex.: `TAFA558.PRW`). O ambiente de teste é Oracle e o hint gera erro (ORA-00933). Não usar a macro `%nolock%`: não aparece nos fontes padrão e `WITH (%nolock%)` chegou ao Oracle como `WITH (%%)`, apesar de a skill `query-builder` apresentá-la como portável.
 - Para inclusões, alterações e exclusões, usar Sigaauto ou MVC quando a rotina nativa oferecer esses recursos; não manipular diretamente com `Replace` ou `FieldPut` nesses casos.
 - Manipular dicionários SX e informações de empresa somente por funções e classes nativas; não abrir aliases de dicionário ou `SM0` diretamente.
 - Usar `FWTemporaryTable` e alias criado por `GetNextAlias()` para tabelas temporárias; fechar e excluir a tabela ao terminar.
@@ -68,11 +77,11 @@
 - Nos fontes das especificações LAB065, usar `@author Julio Storino - Lab065` no cabeçalho `Protheus.doc`.
 - Fontes com acentuação em português; ao editar `.prw`/`.tlpp`, converter o arquivo para CP-1252 ao final (`iconv -f UTF-8 -t CP1252`) e revalidar com `advpls appre` conforme a skill de pré-compilação; para editar de novo, converter para UTF-8, editar e reconverter.
 - Exportação para planilha: usar `FWMsExcelEx` (`AddworkSheet`, `AddTable`, `AddColumn`, `AddRow`, `Activate`, `GetXMLFile`, `DeActivate`), `CpyS2T` e `ShellExecute`; não usar `MsExcel`.
-- Consultas SQL em fontes: `FWExecStatement` com parâmetros `?`, `GetNextAlias()` e `WITH (%nolock%)`; sem concatenar valores do usuário no SQL nem usar `TCSqlToArr`.
+- Consultas SQL em fontes: `FWExecStatement` com parâmetros `?`, `GetNextAlias()` e `NOLOCK` condicional a MSSQL (regra acima); sem concatenar valores do usuário no SQL nem usar `TCSqlToArr`.
 - Buscas nos fontes de referência (`Work/FONTES/FULL`) devem ser feitas em nível de bytes (ex.: Python), pois muitos arquivos têm terminadores de linha NEL/CRLF que fazem o `grep` falhar.
 - Antes de usar uma API TOTVS, validar a assinatura em `Work/FONTES/FULL` ou nas referências das skills; não inferir de memória.
 
 ## Conciliação com TOTVS
 
-- A recomendação da cartilha para `Embedded SQL`, `FWPreparedStatement`, `FWExecStatement` e `NOLOCK` é complementar; prevalecem as formas seguras e portáveis definidas nas skills TOTVS, especialmente `FWExecStatement`, parametrização e `%nolock%`.
+- A recomendação da cartilha para `Embedded SQL`, `FWPreparedStatement`, `FWExecStatement` e `NOLOCK` é complementar; prevalecem as formas seguras e portáveis definidas nas skills TOTVS, especialmente `FWExecStatement`, parametrização e `NOLOCK` condicional a MSSQL.
 - As regras da cartilha sobre MVC, tabelas temporárias, aliases dinâmicos, dicionários, áreas, transações, variáveis públicas e funções públicas reforçam as instruções existentes da stack e não as substituem.

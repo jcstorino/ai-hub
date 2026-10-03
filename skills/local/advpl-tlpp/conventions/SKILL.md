@@ -9,6 +9,8 @@ Use estas regras junto das skills TOTVS quando trabalhar em fontes AdvPL/TLPP.
 
 ## Regras
 
+- Sempre deixar uma linha em branco entre a declaracao de `Function`, `User Function` ou `Static Function` e o inicio da declaracao das variaveis.
+- Quando uma `Function`, `User Function` ou `Static Function` nao tiver retorno, finalizar com `Return( Nil )`.
 - Ao criar `Function`, `User Function` ou `Static Function`, preceda a declaracao com o cabecalho do snippet `pdoc` em `~/Library/Application Support/Code - Insiders/User/snippets/advpl.json`.
 - No cabecalho, use `@author Julio Storino` e `@version P12 Onca`.
 - Nunca use `nOpc` como nome de variavel.

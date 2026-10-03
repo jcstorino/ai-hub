@@ -35,3 +35,7 @@
 - Proibido narrar etapas intermediárias (ex: 'vou verificar', 'estou editando').
 - Informe apenas o resultado final quando a tarefa for concluída.
 - Mantenha o código limpo e sem comentários explicativos
+
+## Entrega de alterações
+
+- Ao final de toda resposta que alterou arquivos de código, listar os fontes alterados como links markdown clicáveis para abrir no VS Code, com caminho relativo ao repositório/worktree (ex.: `[arquivo.ext](pasta/arquivo.ext)`). Vale para qualquer stack e projeto.
